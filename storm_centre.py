@@ -9,16 +9,17 @@ class StormCentre:
         self.storm_list = []
 
     def add_storm(self, storm: Storm) -> bool:
-        if len(self.storm_list) <= 20 and (isinstance(storm, Blizzard) or (storm, Tornado) ) and not self.already_exists(storm.name):
+        if len(self.storm_list) < 20 and (isinstance(storm, Blizzard) or (storm, Tornado) ) and not self.already_exists(storm.name):
             self.storm_list.append(storm)
             return True
         return False
 
     def remove_storm(self, name: str) -> bool:
         for storm in self.storm_list:
-            if name == storm.name:
+            if storm.name == name:
                 self.storm_list.remove(storm)
-        return True
+                return True
+        return False
 
     def view_storm(self, name: str) -> Storm or None:
         for storm in self.storm_list:
